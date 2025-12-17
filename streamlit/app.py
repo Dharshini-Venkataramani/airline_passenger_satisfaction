@@ -6,12 +6,22 @@ from typing import Any, Dict
 import requests
 import streamlit as st
 
+# -----------------------------------------------------------------------------
+# MUST be the first Streamlit command
+# -----------------------------------------------------------------------------
 st.set_page_config(page_title="Airline Customer Satisfaction Prediction", page_icon="✈️")
 
+# -----------------------------------------------------------------------------
+# Config
+# -----------------------------------------------------------------------------
 SCHEMA_PATH = Path("/app/data/data_schema.json")
 API_BASE_URL = os.getenv("API_URL", "http://localhost:8000")
 PREDICT_ENDPOINT = f"{API_BASE_URL}/predict"
 
+# -----------------------------------------------------------------------------
+# Load schema from JSON file
+# -----------------------------------------------------------------------------
+@st.cache_resource
 @st.cache_resource
 def load_schema(path: Path) -> Dict[str, Any]:
     with open(path, "r") as f:
@@ -25,7 +35,15 @@ ordinal_names = ["Inflight wifi service", "Departure/Arrival time convenient", "
            "Food and drink", "Online boarding", "Seat comfort", "Inflight entertainment", "On-board service",
            "Leg room service", "Baggage handling", "Checkin service", "Inflight service", "Cleanliness"]
 
+# -----------------------------------------------------------------------------
+# Streamlit UI
+# -----------------------------------------------------------------------------
 st.title("✈️ Airline Passenger Satisfaction Prediction")
+st.write(
+    f"This app sends your inputs to the FastAPI backend at **{API_BASE_URL}** for prediction."
+)
+
+st.header("Input Features")
 
 user_input: Dict[str, Any] = {}
 
