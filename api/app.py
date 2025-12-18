@@ -31,6 +31,7 @@ model = load_model(MODEL_PATH)
 
 UI_TO_MODEL_COLS = {
     "Gender": "gender",
+    "Age": "age",
     "Customer Type": "customer_type",
     "Type of Travel": "travel_type",
     "Class": "class",

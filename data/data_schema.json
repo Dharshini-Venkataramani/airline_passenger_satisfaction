@@ -1,5 +1,12 @@
 {
   "numerical": {
+    "Age": {
+      "min": 7.0,
+      "max": 85.0,
+      "mean": 39.379706267323684,
+      "median": 40.0,
+      "type": "delay/distance"
+    },
     "Flight Distance": {
       "min": 31.0,
       "max": 4983.0,
